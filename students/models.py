@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Student(models.Model):
     roll_no = models.CharField(max_length=20, unique=True)
-    student_name = models.CharField(blank=False)
+    student_name = models.CharField(max_length=100, blank=False)
     student_age = models.IntegerField(default=18)
     student_email = models.EmailField(blank=True)
 
@@ -26,6 +26,7 @@ class Marks(models.Model):
 
     class Meta:
         unique_together = ('student', 'subject')
+        verbose_name_plural = "Marks"
 
     def __str__(self):
         return f'{self.student.student_name} - {self.subject.sub_name} - {self.marks_obtained}'
