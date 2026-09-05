@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.models import User
  
 
 # Create your views here.
@@ -71,6 +72,30 @@ def login_page(request):
             return redirect("login")
 
     return render(request, 'login.html')
+
+
+def signup_page(request):
+    if request.method == "POST":
+
+        data = request.POST
+
+        student_id = data.get('student_id')
+        student_name = data.get('student_name')
+        username = data.get('username')
+        password = data.get('password')
+
+        if User.objects.filter(username=username).exists():
+            messages.info(request, 'username already taken')
+            return redirect('signup')
+
+        user = User.objects.create_user(username=username, password=password)
+        user.save()
+
+        messages.info(request, 'account created successfully. ')
+        return redirect('login')
+            
+
+    return render(request, 'signup.html')
 
 
 

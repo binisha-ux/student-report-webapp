@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4 shadow-sm" style="width: 100%; max-width: 450px; max-height: 500px; overflow-y: auto;">
+    <h3 class="mb-4 text-center">Sign Up</h3>
+
+
+    {% if messages %}
+      {% for message in messages %}
+        <div>
+          {{ message }}
+        </div>
+
+      {% endfor %}
+    {% endif %}
+<form method="POST"> 
+  {% csrf_token %}
+  <div class="mb-3">
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Student id</label>
+    <input type="integer" class="form-control" name="student_id" required>
+  </div>
+    <label for="exampleInputEmail1" class="form-label">Student Name</label>
+    <input type="text" class="form-control"name="student_name required">
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input type="text" class="form-control" name="username" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" required id="exampleInputPassword1">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Sign up</button>
+</form>
+</div>
+
+
+{% endblock %}
