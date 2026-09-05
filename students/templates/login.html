@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4 shadow-sm" style="width: 100%; max-width: 450px; max-height: 500px; overflow-y: auto;">
+    <h3 class="mb-4 text-center">Login</h3>
+
+    <form method="POST"> 
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+      </div>
+     
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
  
 
 # Create your views here.
@@ -30,9 +32,52 @@ def add_students(request):
 
         return redirect('add_student')
 
-    return render(request, 'report_card.html' )
+    context = {'page': 'add_new_students'}
+
+    return render(request, 'report_card.html', context)
 
 
+def student_list(request):
+    student = Student.objects.all()
 
+    context = {'students': students}
+
+
+    return render(request, 'student_list.html', context)
         
+
+
+
+
+def login_page(request):
+    if request.method == "POST":
+        data = request.POST
+
+        username = data.get('username')
+        password = data.get('password')
+
+        user = authenticate(
+            request,
+            username = username,
+            password = password
+        )
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+
+        else:
+            return render(request, "login.html", {
+                "error": "Invalid username or password"
+            })
+
+    return render(request, 'login.html')
+
+
+
+
+
+
+
+
 
