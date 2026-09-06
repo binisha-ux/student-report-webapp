@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class AcademicSession(models.Model):
-    year = models.IntegerField(max_length=50)     #returns 2026-2027
+    year = models.CharField(max_length=100)     #returns 2026-2027
 
     def __str__(self):
-        return self.year
+        return str(self.year)
 
 
 class SchoolClass(models.Model):
@@ -60,7 +60,7 @@ class Mark(models.Model):
     is_submitted = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.student.roll_number} - {self.subject.code}: {self.marks_obtained}"
+        return f"{self.student.roll_number} - {self.subject.sub_code}: {self.marks_obtained}"
 
 
 
